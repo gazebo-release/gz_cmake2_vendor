@@ -9,12 +9,20 @@ if(NOT FORCE_BUILD_VENDOR_PKG)
   find_package(ignition-cmake2 QUIET)
 endif()
 
+# CMAKE_BUILD_TYPE is not used by MSVC, we need to use the variable somehow
+# to avoid the warning
+if (MSVC)
+  set(ignore ${CMAKE_BUILD_TYPE})
+endif()
+
 macro(build_ignition_cmake2)
   set(extra_cmake_args -DBUILD_TESTING=OFF)
 
   set(IGNITION_CMAKE2_TARGET_VERSION "2.8.0")
 
-  if(DEFINED CMAKE_BUILD_TYPE)
+  # CMAKE_BUILD_TYPE is not used byMSVC, in this case we are not
+  # setting CMAKE_BUILD_TYPE to build the vendor library
+  if(DEFINED CMAKE_BUILD_TYPE AND NOT MSVC)
     list(APPEND extra_cmake_args -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
   endif()
 
