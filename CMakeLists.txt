@@ -16,7 +16,7 @@ macro(build_ignition_cmake2)
 
   if(DEFINED CMAKE_BUILD_TYPE)
     list(APPEND extra_cmake_args "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
-    if (MSVC)
+    if(MSVC)
       # ign-cmake2 ignores CMAKE_BUILD_TYPE on Windows, disable the warning until we know why
       list(APPEND extra_cmake_args "--no-warn-unused-cli")
     endif()
