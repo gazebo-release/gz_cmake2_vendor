@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
   <name>ignition_cmake2_vendor</name>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <description>This package provides the Ignition CMake 2.x library.</description>
   <maintainer email="jrivero@osrfoundation.org">Jose Luis Rivero</maintainer>
   <license>Apache License 2.0</license>  <!-- Both this package and ign-cmake2 are ASL 2.0 -->

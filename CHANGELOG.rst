@@ -2,8 +2,8 @@
 Changelog for package ignition_cmake2_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.2 (2022-03-29)
+------------------
 * Fix an ament_lint warning. (`#3 <https://github.com/ignition-release/ignition_cmake2_vendor/issues/3>`_)
 * use --no-warn-unused-cli on MSVC (`#2 <https://github.com/ignition-release/ignition_cmake2_vendor/issues/2>`_)
 * Fix upstream URL and package reference in manifest
