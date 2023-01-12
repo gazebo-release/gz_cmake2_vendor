@@ -10,10 +10,9 @@
   <url type="website">https://github.com/ignitionrobotics/ign-cmake</url>
   <author email="logans@cottsay.net">Scott K Logan</author>
 
+  <buildtool_depend>ament_cmake_core</buildtool_depend>
   <buildtool_depend>ament_cmake_test</buildtool_depend>
-  <buildtool_depend>cmake</buildtool_depend>
-  <buildtool_depend>doxygen</buildtool_depend>
-  <buildtool_depend>git</buildtool_depend>
+  <buildtool_depend>ament_cmake_vendor_package</buildtool_depend>
 
   <depend>ignition-cmake2</depend>
 
@@ -22,6 +21,6 @@
   <test_depend>ament_cmake_xmllint</test_depend>
 
   <export>
-    <build_type>cmake</build_type>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
