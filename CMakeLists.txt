@@ -12,7 +12,7 @@ endif()
 macro(build_ignition_cmake2)
   set(extra_cmake_args -DBUILD_TESTING=OFF)
 
-  set(IGNITION_CMAKE2_TARGET_VERSION "2.8.0")
+  set(IGNITION_CMAKE2_TARGET_VERSION "2.14.0")
 
   if(DEFINED CMAKE_BUILD_TYPE)
     list(APPEND extra_cmake_args "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
