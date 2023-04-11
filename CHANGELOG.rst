@@ -2,6 +2,12 @@
 Changelog for package ignition_cmake2_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Set target version to 2.14.0 (`#5 <https://github.com/gazebo-release/gz_cmake2_vendor/issues/5>`_)
+* Mirror rolling to main
+* Contributors: Audrow Nash, Yadu
+
 0.0.2 (2022-03-29)
 ------------------
 * Fix an ament_lint warning. (`#3 <https://github.com/ignition-release/ignition_cmake2_vendor/issues/3>`_)
