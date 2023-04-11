@@ -2,8 +2,8 @@
 Changelog for package ignition_cmake2_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.0 (2023-04-11)
+------------------
 * Set target version to 2.14.0 (`#5 <https://github.com/gazebo-release/gz_cmake2_vendor/issues/5>`_)
 * Mirror rolling to main
 * Contributors: Audrow Nash, Yadu
