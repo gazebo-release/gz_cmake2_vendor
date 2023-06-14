@@ -1,85 +1,19 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 project(ignition_cmake2_vendor)
 
-option(FORCE_BUILD_VENDOR_PKG
-  "Build Ignition CMake from source, even if system-installed package is available"
-  OFF)
+find_package(ament_cmake_core REQUIRED)
+find_package(ament_cmake_vendor_package REQUIRED)
 
-if(NOT FORCE_BUILD_VENDOR_PKG)
-  find_package(ignition-cmake2 QUIET)
-endif()
+find_package(ignition-cmake2 2.6.2 QUIET)
 
-macro(build_ignition_cmake2)
-  set(extra_cmake_args -DBUILD_TESTING=OFF)
-
-  set(IGNITION_CMAKE2_TARGET_VERSION "2.14.0")
-
-  if(DEFINED CMAKE_BUILD_TYPE)
-    list(APPEND extra_cmake_args "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
-    if(MSVC)
-      # ign-cmake2 ignores CMAKE_BUILD_TYPE on Windows, disable the warning until we know why
-      list(APPEND extra_cmake_args "--no-warn-unused-cli")
-    endif()
-  endif()
-
-  if(DEFINED CMAKE_TOOLCHAIN_FILE)
-    list(APPEND extra_cmake_args "-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}")
-    if(ANDROID)
-      if(DEFINED ANDROID_ABI)
-        list(APPEND extra_cmake_args "-DANDROID_ABI=${ANDROID_ABI}")
-      endif()
-      if(DEFINED ANDROID_CPP_FEATURES)
-        list(APPEND extra_cmake_args "-DANDROID_CPP_FEATURES=${ANDROID_CPP_FEATURES}")
-      endif()
-      if(DEFINED ANDROID_FUNCTION_LEVEL_LINKING)
-        list(APPEND extra_cmake_args "-DANDROID_FUNCTION_LEVEL_LINKING=${ANDROID_FUNCTION_LEVEL_LINKING}")
-      endif()
-      if(DEFINED ANDROID_NATIVE_API_LEVEL)
-        list(APPEND extra_cmake_args "-DANDROID_NATIVE_API_LEVEL=${ANDROID_NATIVE_API_LEVEL}")
-      endif()
-      if(DEFINED ANDROID_NDK)
-        list(APPEND extra_cmake_args "-DANDROID_NDK=${ANDROID_NDK}")
-      endif()
-      if(DEFINED ANDROID_STL)
-        list(APPEND extra_cmake_args "-DANDROID_STL=${ANDROID_STL}")
-      endif()
-      if(DEFINED ANDROID_TOOLCHAIN_NAME)
-        list(APPEND extra_cmake_args "-DANDROID_TOOLCHAIN_NAME=${ANDROID_TOOLCHAIN_NAME}")
-      endif()
-    endif()
-  else()
-    list(APPEND extra_cmake_args "-DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}")
-  endif()
-  list(APPEND extra_cmake_args "-DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}")
-
-  include(ExternalProject)
-
-  externalproject_add(ignition-cmake2-${IGNITION_CMAKE2_TARGET_VERSION}
-    GIT_REPOSITORY https://github.com/ignitionrobotics/ign-cmake.git
-    GIT_TAG ignition-cmake2_${IGNITION_CMAKE2_TARGET_VERSION}
-    GIT_CONFIG advice.detachedHead=false
-    # Suppress git update due to https://gitlab.kitware.com/cmake/cmake/-/issues/16419
-    # See https://github.com/ament/uncrustify_vendor/pull/22 for details
-    UPDATE_COMMAND ""
-    TIMEOUT 600
-    CMAKE_ARGS
-      -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_install
-      ${extra_cmake_args}
-  )
-
-  # The external project will install to the build folder, but we'll install that on make install.
-  install(
-    DIRECTORY
-      ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_install/
-    DESTINATION
-      ${CMAKE_INSTALL_PREFIX}
-    USE_SOURCE_PERMISSIONS
-  )
-endmacro()
-
-if(NOT ignition-cmake2_FOUND OR "${ignition-cmake2_VERSION}" VERSION_LESS 2.6.2)
-  build_ignition_cmake2()
-endif()
+ament_vendor(ignition_cmake2_vendor
+  SATISFIED ${ignition-cmake2_FOUND}
+  VCS_URL https://github.com/ignitionrobotics/ign-cmake.git
+  VCS_VERSION ignition-cmake2_2.14.0
+  CMAKE_ARGS
+    -DBUILD_DOCS:BOOL=OFF
+  GLOBAL_HOOK
+)
 
 find_package(ament_cmake_test REQUIRED)
 if(BUILD_TESTING)
@@ -92,7 +26,4 @@ if(BUILD_TESTING)
   ament_xmllint()
 endif()
 
-install(
-  FILES package.xml
-  DESTINATION share/${PROJECT_NAME}
-)
+ament_package()
