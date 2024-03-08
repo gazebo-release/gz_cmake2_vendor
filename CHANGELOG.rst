@@ -2,6 +2,11 @@
 Changelog for package ignition_cmake2_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Vendor gz_cmake2 unconditionally. (`#7 <https://github.com/gazebo-release/gz_cmake2_vendor/issues/7>`_)
+* Contributors: Steven! Ragnarök
+
 0.2.1 (2023-06-22)
 ------------------
 * Switch to ament_cmake_vendor_package (`#6 <https://github.com/gazebo-release/gz_cmake2_vendor/issues/6>`_)
