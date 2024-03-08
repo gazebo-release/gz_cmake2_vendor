@@ -14,8 +14,6 @@
   <buildtool_depend>ament_cmake_test</buildtool_depend>
   <buildtool_depend>ament_cmake_vendor_package</buildtool_depend>
 
-  <depend>ignition-cmake2</depend>
-
   <test_depend>ament_cmake_copyright</test_depend>
   <test_depend>ament_cmake_lint_cmake</test_depend>
   <test_depend>ament_cmake_xmllint</test_depend>
